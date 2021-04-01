@@ -11,7 +11,7 @@ class OverScrollDisScrollView(cont: Context, attrs: AttributeSet?): ScrollView(c
     val tag = "OverScrollDisScrollView"
     private val overScrollDistance = 500
 
-    constructor(cont: Context) : this(cont, null)
+    constructor(cont: Context): this(cont, null)
 
     init {
         val sClass = ScrollView::class.java
@@ -30,10 +30,9 @@ class OverScrollDisScrollView(cont: Context, attrs: AttributeSet?): ScrollView(c
 
 
 
-    override fun onOverScrolled(scrollX: Int, scrollY: Int, clampedX: Boolean, clampedY: Boolean) {
-        super.onOverScrolled(scrollX, scrollY, clampedX, clampedY)
-//        mScrollY = 0
-    }
+//    override fun onOverScrolled(scrollX: Int, scrollY: Int, clampedX: Boolean, clampedY: Boolean) {
+//        super.onOverScrolled(scrollX, scrollY, clampedX, clampedY)
+//    }
 
     override fun onTouchEvent(ev: MotionEvent?): Boolean {
         super.onTouchEvent(ev)
@@ -42,9 +41,11 @@ class OverScrollDisScrollView(cont: Context, attrs: AttributeSet?): ScrollView(c
                 MotionEvent.ACTION_UP -> {
                     val yDown = getYDownScrollRange()
                     if (mScrollY < 0) {
-                        onOverScrolled(0, 0, false, false)
+                        scrollTo(0, 0)
+//                        onOverScrolled(0, 0, false, false)
                     } else if (mScrollY > yDown) {
-                        onOverScrolled(0, yDown, false, false)
+                        scrollTo(0, yDown)
+//                        onOverScrolled(0, yDown, false, false)
                     }
                 }
 
@@ -65,4 +66,6 @@ class OverScrollDisScrollView(cont: Context, attrs: AttributeSet?): ScrollView(c
         }
         return scrollRange
     }
+
+
 }
